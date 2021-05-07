@@ -1,0 +1,15 @@
+<a style='cursor: pointer;'  class="list-group-item clearfix">
+    <div class="pull-left">
+      <h4 class="list-group-item-heading">Date {{order.date}}</h4>
+    </div>
+    <table class="pull-right">
+        <tr class="pull-right">
+            <th>Description</th>
+        </tr>
+        <tr *ngFor="let item of order.items let i= index">
+            <td>{{item.product.description}} x{{item.quantity}}</td>
+        </tr>
+        <tr class="pull-right" style="font-weight:bold">Total price {{order.price}}</tr>
+    </table>
+    <div class=btn></div>
+  </a>

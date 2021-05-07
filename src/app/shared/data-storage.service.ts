@@ -7,6 +7,8 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Cart } from "./cart.model";
 import { User } from "./user.model";
 import { UserService } from "./user.service";
+import { Order } from "./order.model";
+import { ShoppingHistoryService } from "../shopping-history.service";
 
 @Injectable({ providedIn: "root" })
 export class DataStorageService {
@@ -15,13 +17,12 @@ export class DataStorageService {
   constructor(private http: HttpClient,
     private productService: ProductService,
     private ShoppingListService: ShoppingListService,
-    private userService: UserService
+    private userService: UserService,
+    private shoppingHistoryService: ShoppingHistoryService
     ) {}
 
   storeProducts() {
     this.cart = new Cart(this.ShoppingListService.getProducts());
-    // this.cart.cartItems = this.ShoppingListService.getProducts();
-
     console.log(JSON.stringify(this.cart));
     this.http.post("http://localhost:8080/shopping-list?name="+this.userService.currentUser.name, this.cart).subscribe((response) => {
       console.log(response);
@@ -58,5 +59,23 @@ export class DataStorageService {
         console.log(user);
         this.userService.setUser(user);
       })).subscribe();
+  }
+
+  fetchOrderHistory(userId:number) {
+    return this.http
+      .get<Order[]>("http://localhost:8080/history?userId="+userId)
+      .pipe(
+        map((orders) => {
+          return orders.map((orders) => {
+            return {
+              ...orders
+            };
+          });
+        }),
+        tap(orders => {
+          this.shoppingHistoryService.setOrders(orders);
+          console.log(orders);
+        })
+      )
   }
 }

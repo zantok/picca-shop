@@ -37,8 +37,14 @@ export class ShoppingListService {
     if (this.cartItems[index].count>1) {
       this.cartItems[index].count--;
     } else {
+      this.includedProductIds.splice(index,1);
       this.cartItems.splice(index,1)
     }
+    this.shoppingList.next(this.cartItems.slice());
+  }
+  removeFromCart(index: number) {
+    this.includedProductIds.splice(index,1);
+    this.cartItems.splice(index,1)
     this.shoppingList.next(this.cartItems.slice());
   }
   ascendProduct(index : number) {

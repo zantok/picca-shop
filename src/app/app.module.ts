@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingHistoryComponent } from './shopping-history/shopping-history.component';
+import { OrderItemComponent } from './order-item/order-item.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
     HeaderComponent,
     FrontPageComponent,
     ProductItemComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    ShoppingHistoryComponent,
+    OrderItemComponent
   ],
   imports: [
     HttpClientModule,

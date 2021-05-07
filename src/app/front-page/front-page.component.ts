@@ -13,7 +13,7 @@ export class FrontPageComponent implements OnInit {
   products: Product[] = [];
 
 
-  constructor(private productService: ProductService, private router:Router, private route: ActivatedRoute, private dataStorageService: DataStorageService) { }
+  constructor(private productService: ProductService, private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     if (this.products.length === 0) {

@@ -13,7 +13,6 @@ export class ProductItemComponent implements OnInit {
   @Input() index:number;
 
   constructor(
-    private productService: ProductService,
     private shoppingListService: ShoppingListService
   ){}
 

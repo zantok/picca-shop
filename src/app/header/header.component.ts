@@ -9,24 +9,24 @@ import { UserService } from "../shared/user.service";
   styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
+  public name: string;
   @ViewChild('f',{static:false}) logForm: NgForm;
-  constructor(private dataStorageService: DataStorageService) {}
+  constructor(private dataStorageService: DataStorageService, private userService: UserService) {}
 
-  // onSaveData() {
-  //   this.dataStorageService.storeProducts();
-  // }
-
-  // onFetchData() {
-  //   this.dataStorageService.fetchProducts().subscribe();
-  // }
-
-  collapsed = true;
+  loggedIn = false;
   ngOnInit() {}
 
   onSubmit(form:NgForm){
     const value = form.value;
     console.log(value.name);
     this.dataStorageService.addUser(value.name);
+    this.name=value.name;
+    this.loggedIn= true;
+  }
 
+  onLogOut(){
+    this.userService.logout();
+    this.name="";
+    this.loggedIn=false;
   }
 }

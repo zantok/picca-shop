@@ -1,0 +1,6 @@
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+      <app-order-item *ngFor="let item of orderList let i= index" [order] = "item" [index]="i"></app-order-item>
+  </div>
+</div>
